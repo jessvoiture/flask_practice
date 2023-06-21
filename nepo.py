@@ -64,7 +64,12 @@ def get_soup(url):
 def get_infobox(soup):
      # check if infobox exists
     infobox = soup.find("table",{"class":"infobox biography vcard"}) # infobox
-    return infobox
+    
+    if infobox is None :
+        infobox_alt = soup.find("table",{"class":"infobox vcard"}) # infobox
+        return infobox_alt
+    else :
+        return infobox
 
 def get_infobox_fields(infobox):
     infobox_fields = infobox.find_all('th', {'class' : 'infobox-label'})
